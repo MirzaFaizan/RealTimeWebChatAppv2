@@ -8,5 +8,5 @@ let port = process.env.PORT || '3000';
 app.use(express.static(publicPath));
 
 app.listen(port,()=>{
-    console.log("server is up on port 3000");
+    console.log(`server is up on port : ${port}`);
 })
