@@ -8,5 +8,15 @@
 </head>
 <body>
     <h1>Test</h1>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        socket.on('connect',()=>{
+            console.log("connected to server");
+        });
+        socket.on('disconnected',()=>{
+            console.log("connected to server");
+        });
+    </script>
 </body>
 </html>
