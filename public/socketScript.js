@@ -1,6 +1,8 @@
 var socket = io();
 socket.on('connect',()=>{
     console.log("connected to server");
+
+
 });
 
 
@@ -8,8 +10,8 @@ socket.on('disconnected',()=>{
     console.log("connected to server");
 });
 
-//on new E-mail
+//on a new arrived chat message
 
-socket.on('newEmail',(email)=>{
-    console.log(`new Email : ${JSON.stringify(email,undefined,10)}`);
-})
+socket.on('chatMessage',(email)=>{
+    console.log(`new Email`,email);
+});

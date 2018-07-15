@@ -18,11 +18,24 @@ let io = socket(server);
 
 io.on('connection',(socket)=>{
     console.log('new user connected');
-    
-    io.on('disconnected',()=>{
+    // new message    
+    socket.emit('chatMessage',{
+        from:'mirzafaizanejaz@gmail.com',
+        to: 'zaki@gmail.com',
+        message:'why not! sure'
+    });
+    // create Email
+
+    socket.on('newMessage',(data)=>{
+        console.log(data);
+    });
+
+    // on disconnect
+    socket.on('disconnect',()=>{
         console.log('user was disconnected');
-    })
-});
+    });
+
+});//io Server connection end here
 
 
 
