@@ -18,16 +18,36 @@ let io = socket(server);
 
 io.on('connection',(socket)=>{
     console.log('new user connected');
-    // new message    
-    socket.emit('chatMessage',{
-        from:'mirzafaizanejaz@gmail.com',
-        to: 'zaki@gmail.com',
-        message:'why not! sure'
-    });
-    // create Email
 
-    socket.on('newMessage',(data)=>{
-        console.log(data);
+    //welcome new user
+    socket.emit('newMessage',{
+        from:'admin',
+        to:'new user',
+        message:'welcome to the chat application',
+    });
+    
+    //notify other users
+    socket.broadcast.emit('newMessage',{
+        from:'admin',
+        to:'everyone',
+        message:'new user arrived',
+    })
+    
+
+
+    // recieve and braodcast message
+
+    socket.on('createMessage',(message)=>{
+        // io.emit('newMessage',{
+        //     from:message.from,
+        //     to:message.to,
+        //     message:message.message,
+        // });
+        socket.broadcast.emit('newMessage',{
+                from:message.from,
+                to:message.to,
+                message:message.message,
+            });
     });
 
     // on disconnect
